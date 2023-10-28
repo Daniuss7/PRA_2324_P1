@@ -55,10 +55,10 @@ class ListLinked : public List<T>
   
  friend std::ostream& operator<<(std::ostream &out, const ListLinked<T> &list)
  {
-   Node<T> *aux = list->first;
-   while(aux !=nullptr)
+   Node<T> *aux = list.first;
+   for(int i = 0; i < list.n; i++)
      {
-       std::cout<<"Elemento : "<< list->n<<"Posicion : "<<(list->n-1)<< "Valor almacenado : " << aux->data << std::endl;
+       std::cout<<"Elemento : "<< list.n<<"  Posicion : "<<(list.n-1)<< "  Valor almacenado : " << aux->data << std::endl;
        aux = aux->next;
      }
    return out;
@@ -119,7 +119,7 @@ class ListLinked : public List<T>
   
   void append(T e)override
   {
-    if(n == 0)throw std::exception("No existe una lista aún");
+    if(n == 0)throw std::runtime_error("No existe una lista aún");
     
     if(n == 1)//Lista iniciada pero sin nada
       {
@@ -142,7 +142,7 @@ class ListLinked : public List<T>
   
   void prepend(T e)override
   {
-     if(n == 0)throw std::exception("No existe una lista aún");
+     if(n == 0)throw std::runtime_error("No existe una lista aún");
      if(n == 1)//Lista iniciada pero sin nada
       {
 	first = new Node(e);
